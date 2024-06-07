@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Product } from 'src/app/models/Product';
 import { environment } from 'src/environments/environments';
 
@@ -27,7 +28,7 @@ export class ProductService {
     return this.http.delete(`${this.apiURL}/${productId}`)
   }
 
-  listPaginatorProducts(initialValue:number, limitResponse: number){
+  listPaginatorProducts(initialValue:number, limitResponse: number): Observable<Product[] | any>{
     return this.http.get(`${this.apiURL}?offset=${initialValue}&limit=${limitResponse}`)
   }
 }

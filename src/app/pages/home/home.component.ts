@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/models/Product';
+import { ProductService } from 'src/app/modules/Product/services/product.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  recentProductList: Product[] = []
+  constructor(private readonly _productService: ProductService) { }
 
   ngOnInit() {
-  }
+    this._productService.listPaginatorProducts(0, 4).subscribe((res) => {
+      console.log(res)
+      this.recentProductList = res
+    })
+  } 
 
 }

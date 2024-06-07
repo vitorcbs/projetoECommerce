@@ -12,21 +12,6 @@ import { FooterComponent } from './modules/layout/footer/footer.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
-  ngOnInit(): void {
-    this.getTeste()
-  }
+export class AppComponent {
 
-  constructor(private readonly http: HttpClient){
-
-  }
-  title = 'projetoNX';
-
-
-  getTeste(){
-    this.http.get('https://api.escuelajs.co/api/v1/products').subscribe((res) => 
-    {
-      console.log(res)
-    })
-  }
 }
