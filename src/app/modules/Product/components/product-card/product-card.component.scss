@@ -1,0 +1,14 @@
+::ng-deep .p-link{
+    background-color: white;
+}
+
+::ng-deep .p-galleria-indicator{
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.2rem;
+    margin-top: 0.2rem;
+}
+
+::ng-deep .p-link:hover{
+    background-color: rgb(202, 202, 202);
+}

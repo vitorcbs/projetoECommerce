@@ -1,3 +1,37 @@
-<p>
-  product-card works!
-</p>
+<p-card
+>
+  <ng-template pTemplate="header">
+    <p-galleria
+      [value]="product?.images"
+      [showIndicators]="true"
+      [showThumbnails]="false"
+      [responsiveOptions]="responsiveOptions"
+      [containerStyle]="{ 'max-width': '360px' }"
+      [showIndicatorsOnItem]="imageProductLength()"
+      ><ng-template pTemplate="item" let-item>
+        <img
+          [src]="item"
+          (error)="onImageError($event)"
+          style="width: 100%; display: block"
+        /> </ng-template
+    ></p-galleria>
+  </ng-template>
+  <div class="pt-6 text-center space-y-6">
+    <p>
+      {{product?.title}}
+    </p>
+    <p>
+      R${{product?.price}}
+    </p>
+  </div>
+  <ng-template pTemplate="footer">
+    <div class="flex gap-3 mt-1 p-5 justify-center">
+      <p-button
+        severity="secondary"
+        icon="pi pi-cart-plus"
+        class="w-1/2"
+        styleClass="w-full bg-gray-500 hover:bg-gray-700 p-3 text-white"
+      />
+    </div>
+  </ng-template>
+</p-card>
