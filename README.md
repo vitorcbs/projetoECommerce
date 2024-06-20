@@ -2,7 +2,6 @@
 
 ![Print2](https://github.com/vitorcbs/projetoECommerce/blob/master/Captura%20de%20tela%202024-06-20%20150131.png) 
 
-
 ## Sobre o Projeto
 
 Este projeto simula um e-commerce para treinamento, usando Nx, Angular, Typescript, Tailwind, Bootstrap, Primeng;
