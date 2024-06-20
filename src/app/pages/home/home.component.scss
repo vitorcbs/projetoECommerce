@@ -1,7 +1,14 @@
 .image-size {
   width: 40rem !important;
   height: 45rem !important;
-  z-index: 9999;
+  z-index: 1000;
+  position: relative;
+}
+
+.image-size-men {
+  width: 30rem !important;
+  height: 45rem !important;
+  z-index: 1000;
   position: relative;
 }
 

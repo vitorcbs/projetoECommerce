@@ -1,18 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Product } from 'src/app/models/Product';
 import { environment } from 'src/environments/environments';
+import { CartItem } from '../components/cart/model/cartItem.interface';
 
 @Injectable()
 export class ProductService {
-  constructor(private readonly http: HttpClient) {}
   apiURL = `${environment.apiUrl}${'products'}`
+  private cartItemsSubject = new BehaviorSubject<CartItem[]>([]);
 
-  getAllProducts(){
+  constructor(private http: HttpClient) {
+  }
+
+  updateCartItems(cartItems: CartItem[]) {
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+    this.cartItemsSubject.next(cartItems);
+  }
+
+  getAllProducts(): Observable<Product[] | any>{
     return this.http.get(`${this.apiURL}`)
   }
-  getProductById(productId: number){
+  getProductById(productId: string): Observable<Product | any>{
     return this.http.get(`${this.apiURL}/${productId}`)
   }
 
@@ -30,5 +39,9 @@ export class ProductService {
 
   listPaginatorProducts(initialValue:number, limitResponse: number): Observable<Product[] | any>{
     return this.http.get(`${this.apiURL}?offset=${initialValue}&limit=${limitResponse}`)
+  }
+
+  listPaginatorProductsByCategory(initialValue: number, limitResponse: number, categoryId: number): Observable<Product[] | any>{
+    return this.http.get(`${this.apiURL}?categoryId=${categoryId}&offset=${initialValue}&limit=${limitResponse}`)
   }
 }

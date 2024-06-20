@@ -1,0 +1,67 @@
+<div class="max-w-7xl mx-auto custom-vh p-6">
+  <button
+    (click)="goBack()"
+    class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 mb-2"
+  >
+    &larr; Voltar para a lista de produtos
+  </button>
+  <div class="bg-white shadow-md rounded-lg overflow-hidden">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+      <!-- Gallery -->
+      <div class="flex flex-col space-y-4">
+        <div class="w-full h-96 bg-gray-200 rounded-lg overflow-hidden">
+          <p-galleria
+            [value]="product?.images"
+            [showIndicators]="true"
+            [showThumbnails]="false"
+            [responsiveOptions]="responsiveOptions"
+            [containerStyle]="{ 'max-width': '100%' }"
+            [showIndicatorsOnItem]="imageProductLength()"
+            ><ng-template pTemplate="item" let-item>
+              <img
+                [src]="item"
+                (error)="onImageError($event)"
+                style="width: 100%; display: block"
+              /> </ng-template
+          ></p-galleria>
+        </div>
+        <div class="grid grid-cols-3 gap-2">
+          <div *ngFor="let image of product?.images?.slice(1)">
+            <img
+              [src]="image"
+              alt="{{ product?.title }}"
+              class="w-full h-32 object-cover rounded-lg"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- Product Details -->
+      <div class="flex flex-col space-y-4">
+        <div>
+          <h1 class="text-4xl font-bold">{{ product?.title }}</h1>
+          <div class="flex items-center space-x-2">
+            <span class="text-xl font-semibold text-blue-600"
+              >${{ product?.price }}</span
+            >
+          </div>
+        </div>
+        <div class="text-gray-700">
+          <p>{{ product?.description }}</p>
+        </div>
+        <div class="text-gray-500">
+          <p>
+            Category:
+            <span class="font-semibold">{{ product?.category?.name }}</span>
+          </p>
+        </div>
+        <div class="flex space-x-4">
+          <button (click)="addToCart(product!)"
+            class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="max-w-4xl mx-auto h-screen p-8">
+  <h2 class="text-2xl font-bold mb-4">Checkout</h2>
+  <p-stepper [linear]="true" [activeStep]="currentStep">
+    <p-stepperPanel header="Produtos">
+        <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
+            <app-cart-itens [cartItens]="cartItems"></app-cart-itens>
+            <div class="flex pt-4 justify-content-end">
+                <p-button 
+                    label="Próximo" 
+                    icon="pi pi-arrow-right" 
+                    iconPos="right" 
+                    (onClick)="nextStep()" />
+            </div>
+        </ng-template>
+    </p-stepperPanel>
+    <p-stepperPanel header="Endereço">
+        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback" let-index="index">
+            <app-endereco-checkout (addressSubmit)="onAddressSubmit($event)"></app-endereco-checkout>
+            <div class="flex gap-4 pt-4 justify-content-between">
+                <p-button 
+                    label="Voltar" 
+                    icon="pi pi-arrow-left" 
+                    (onClick)="returnStep()" />
+            </div>
+        </ng-template>
+    </p-stepperPanel>
+    <p-stepperPanel header="Pagamento">
+        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback" let-index="index">
+            <app-pagamento-checkout (paymentSubmit)="onPaymentSubmit($event)"></app-pagamento-checkout>
+            <div class="flex gap-4 pt-4 justify-content-between">
+              <p-button 
+                  label="Voltar" 
+                  icon="pi pi-arrow-left" 
+                  (onClick)="returnStep()" />
+          </div>
+        </ng-template>
+    </p-stepperPanel>
+    <p-stepperPanel header="Revisao">
+        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-index="index">
+            <app-revisao-checkout [endereco]="addressData" [payment]="paymentData" [cartItems]="cartItems"></app-revisao-checkout>
+            <div class="flex pt-4 justify-content-start">
+                <p-button label="Voltar" icon="pi pi-arrow-left" (onClick)="returnStep()" />
+            </div>
+        </ng-template>
+    </p-stepperPanel>
+</p-stepper>
+  <ng-template #emptyCart>
+    <p class="text-lg">O carrinho está vazio.</p>
+  </ng-template>
+</div>

@@ -1,0 +1,42 @@
+<div class="p-4">
+  <h2 class="text-2xl font-bold mb-4">Revisão do Pedido</h2>
+
+  <!-- Informações do endereço -->
+  <section class="mb-6">
+    <h3 class="text-lg font-semibold mb-2">Endereço de Entrega</h3>
+    <p>{{ endereco.street }}, {{ endereco.number }}</p>
+    <p>{{ endereco.city }}, {{ endereco.state }} - {{ endereco.zipCode }}</p>
+    <p *ngIf="endereco.complement">Complemento: {{ endereco.complement }}</p>
+  </section>
+
+  <!-- Informações dos produtos no carrinho -->
+  <section class="mb-6">
+    <h3 class="text-lg font-semibold mb-2">Produtos no Carrinho</h3>
+    <div *ngFor="let item of cartItems" class="flex items-center mb-4">
+      <img [src]="item.image" alt="{{ item.title }}" class="w-16 h-16 object-cover rounded-lg" (error)="onImageError($event)">
+      <div class="ml-4">
+        <h4 class="text-md font-semibold">{{ item.title }}</h4>
+        <p>Preço unitário: ${{ item.price }}</p>
+        <p>Quantidade: {{ item.quantity }}</p>
+        <p>Total: ${{ item.price * item.quantity }}</p>
+      </div>
+    </div>
+    <hr class="my-4">
+    <div class="text-right font-bold">
+      Total do Pedido: ${{ getTotal() }}
+    </div>
+  </section>
+
+  <!-- Informações de pagamento -->
+  <section>
+    <h3 class="text-lg font-semibold mb-2">Detalhes de Pagamento</h3>
+    <p>Cartão: **** **** **** {{ payment.cardNumber.slice(-4) }}</p>
+    <p>Validade: {{ payment.expiryDate }}</p>
+    <p>Nome do Titular: {{ payment.cardholderName }}</p>
+  </section>
+</div>
+<div class="flex justify-end">
+  <button (click)="showSucess()" class="px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:text-sm">
+    Finalizar Pedido
+  </button>
+</div>
