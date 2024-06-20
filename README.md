@@ -1,4 +1,4 @@
-# E-commerce t-shirts 
+# E-commerce T-shirts 
 
 ![Print2](https://github.com/vitorcbs/projetoECommerce/blob/master/Captura%20de%20tela%202024-06-20%20150131.png) 
 
