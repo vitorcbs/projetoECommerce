@@ -62,7 +62,7 @@ Ele mostrará as tarefas que você pode executar com Nx.
 
 ## Contato
 
-- LinkedIn: [Seu LinkedIn](https://www.linkedin.com/seu-perfil)
-- GitHub: [Seu GitHub](https://github.com/seu-username)
+- [LinkedIn](https://www.linkedin.com/seu-perfil)
+- [GitHub](https://github.com/seu-username)
 
 ![Print2](https://github.com/vitorcbs/projetoECommerce/blob/master/111111.png)
